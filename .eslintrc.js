@@ -27,7 +27,10 @@ module.exports = {
   "settings": {
     "import/ignore": [
       "node_modules/react-native/index\\.js$"
-    ]
+    ],
+    "import/resolver": {
+      "typescript": {}
+    },
   },
   "rules": {
     'prettier/prettier': [
@@ -69,5 +72,7 @@ module.exports = {
     "react/jsx-props-no-spreading": 0,
     "global-require": 0,
     "@typescript-eslint/dot-notation": 0,
+    "import/order": ["error", {"groups": ["builtin", "external", "internal", "parent", "sibling", "index", "object", "type"]}],
+    "import/no-named-as-default-member": 0,
   }
 };
