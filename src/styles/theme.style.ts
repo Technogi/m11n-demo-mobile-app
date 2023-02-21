@@ -28,8 +28,8 @@ const theme = {
   FONT_SIZE_4XL: 30,
   FONT_SIZE_5XL: 36,
   FONT_SIZE_6XL: 42,
-  FONT_FAMILY_REGULAR: 'Inter-Regular',
-  FONT_FAMILY_BOLD: 'Inter-Bold',
+  FONT_FAMILY_REGULAR: 'Roboto-Regular',
+  FONT_FAMILY_BOLD: 'Roboto-Bold',
   ICON_SIZE_SM: 22,
   ICON_SIZE_MD: 24,
   ICON_SIZE_LG: 26,
@@ -68,8 +68,8 @@ const theme = {
   GRAY_600: '#666',
   GRAY_700: '#444',
   PLACEHOLDER: '#89A6C2',
-  LOGO: defaultTheme.LOGO,
-  SECONDARY_LOGO: defaultTheme.SECONDARY_LOGO,
+  // LOGO: defaultTheme.LOGO,
+  // SECONDARY_LOGO: defaultTheme.SECONDARY_LOGO,
   COMPANY_NAME: defaultTheme.COMPANY_NAME,
 }
 
