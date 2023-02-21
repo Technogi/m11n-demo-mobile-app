@@ -4,14 +4,14 @@ import { DefaultTheme } from './types'
  * Default theme for Deli Life Company (colors, company name, logo)
  */
 export const defaultTheme: DefaultTheme = {
-  PRIMARY_COLOR: '#1650C5',
-  SECONDARY_COLOR: '#215E4B',
+  PRIMARY_COLOR: '#009688',
+  SECONDARY_COLOR: '#E91E63',
   PRIMARY_TEXT_COLOR: '#FFFFFF',
   SECONDARY_TEXT_COLOR: '#E4EEFF',
   // LOGO: require('src/assets/images/logo/main-logo.png'),
   // SECONDARY_LOGO: require('src/assets/images/logo/simple-logo.png'),
   COMPANY_NAME: 'Technogi',
-  BODY_TEXT_COLOR: '#171717',
+  BODY_TEXT_COLOR: '#616161',
 }
 
 /**
