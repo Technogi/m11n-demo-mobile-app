@@ -1,0 +1,31 @@
+{
+  "login": {
+    "subtitle": "Bienvenido a",
+    "signInButton": "INICIAR SESIÓN",
+    "signingInSpinner": "INICIANDO SESIÓN"
+  },
+  "forms": {
+    "placeholders": {
+      "email": "Ingresa tu correo electrónico",
+      "password": "Ingresa tu contraseña",
+      "confirmPassword": "Confirma tu contraseña",
+      "newPassword": "Ingresa tu nueva contraseña",
+      "confirmNewPassword": "Confirma tu nueva contraseña"
+    },
+    "validations": {
+      "required": "Requerido",
+      "password": "Mínimo seis caracteres",
+      "confirmPassword": "Contraseñas diferentes"
+    }
+  },
+  "buttons": {
+    "save": "GUARDAR",
+    "confirm": "CONFIRMAR",
+    "resend": "REENVIAR CÓDIGO"
+  },
+  "spinners": {
+    "saving": "GUARDANDO",
+    "confirming": "CONFIRMANDO",
+    "resending": "REENVIANDO CÓDIGO"
+  }
+}

@@ -52,7 +52,9 @@ const TextInputForm = (textInputFormProps: TextInputFormProps): JSX.Element => {
               errorPositionTop ? mainStyle.textSmStyle(errorMessagesTopStyle) : mainStyle.textSmStyle(errorMessageStyle)
             }
           >
-            {errors[name]?.message === '' || !errors[name]?.message ? 'Field required' : errors[name]?.message}
+            {(errors[name]?.message as string) === '' || !(errors[name]?.message as string)
+              ? 'Field required'
+              : (errors[name]?.message as string)}
           </Text>
         )
       }
@@ -64,7 +66,9 @@ const TextInputForm = (textInputFormProps: TextInputFormProps): JSX.Element => {
               errorPositionTop ? mainStyle.textSmStyle(errorMessagesTopStyle) : mainStyle.textSmStyle(errorMessageStyle)
             }
           >
-            {errors[name]?.message === '' || !errors[name]?.message ? '' : errors[name]?.message}
+            {(errors[name]?.message as string) === '' || !(errors[name]?.message as string)
+              ? ''
+              : (errors[name]?.message as string)}
           </Text>
         )
       }

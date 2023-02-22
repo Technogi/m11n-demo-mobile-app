@@ -11,6 +11,7 @@ import { DefaultTheme, NavigationContainer } from '@react-navigation/native'
 
 import { theme } from 'src/styles'
 import RootStack from 'src/navigation/root-stack.nav'
+import { LocalizationCtx } from 'src/context/localization/localization.context'
 
 const navTheme = DefaultTheme
 navTheme.colors.background = theme.SCREEN_BACKGROUND_COLOR
@@ -19,7 +20,9 @@ function App(): JSX.Element {
   return (
     <NavigationContainer theme={navTheme}>
       <StatusBar barStyle="dark-content" backgroundColor={theme.SCREEN_BACKGROUND_COLOR} />
-      <RootStack />
+      <LocalizationCtx>
+        <RootStack />
+      </LocalizationCtx>
     </NavigationContainer>
   )
 }
