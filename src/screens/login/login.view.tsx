@@ -1,21 +1,18 @@
 import React, { useContext } from 'react'
 import { View } from 'react-native'
 import { Control, FieldValues, useForm } from 'react-hook-form'
-// import FastImage from 'react-native-fast-image'
 import { moderateScale } from 'react-native-size-matters'
 
 import { Button, Container, Content, Headline, Subtitle, TextInputForm } from 'src/components'
-import { theme } from 'src/styles'
 import { LocalizationContext } from 'src/context/localization/localization.context'
 
 import { LoginFormName } from './models/login.model'
-
-// import styles from './styles'
+import styles from './styles'
 
 /**
- * Screen to show user welcome (register, login modal)
+ * Screen to show login (email and password inputs)
  *
- * @param {WelcomeFloScreen} WelcomeFloNavProps
+ * @param {LoginScreen} LoginScreen
  * @return {JSX.Element}  {JSX.Element}
  */
 const LoginScreen = (): JSX.Element => {
@@ -23,7 +20,13 @@ const LoginScreen = (): JSX.Element => {
     control,
     // handleSubmit,
     formState: { errors },
-  } = useForm({ mode: 'all', defaultValues: { url: '' } })
+  } = useForm({
+    mode: 'all',
+    defaultValues: {
+      [LoginFormName.EMAIL]: '',
+      [LoginFormName.PASSWORD]: '',
+    },
+  })
 
   const {
     translations: {
@@ -32,20 +35,19 @@ const LoginScreen = (): JSX.Element => {
     },
   } = useContext(LocalizationContext)
 
+  const { titleStyle, subtitleStyle, submitButtonStyle } = styles
+
   const HeaderSection = (): JSX.Element => (
     <View style={{ alignItems: 'center' }}>
-      {/* <FastImage
-        source={require('src/assets/images/logo/flo-logo-shadow.png')}
-        style={logoStyle}
-        resizeMode={FastImage.resizeMode.contain}
-      /> */}
+      <Headline style={titleStyle}>POStats</Headline>
 
-      <Headline style={{ marginTop: moderateScale(30), fontSize: theme.FONT_SIZE_3XL }}>POStats</Headline>
+      <Subtitle style={subtitleStyle}>{login.subtitle} Technogi's M11N</Subtitle>
+      <Subtitle style={{ textAlign: 'center' }}>Demo Mobile App</Subtitle>
     </View>
   )
 
   const formSection = (): JSX.Element => (
-    <View style={{ marginVertical: moderateScale(20) }}>
+    <View style={{ marginTop: moderateScale(20) }}>
       <TextInputForm
         name={LoginFormName.EMAIL}
         placeholder={placeholders.email}
@@ -69,6 +71,8 @@ const LoginScreen = (): JSX.Element => {
         autoCapitalize="none"
         autoCorrect={false}
       />
+
+      <Button containerStyle={submitButtonStyle} title={login.signInButton} onPress={() => {}} />
     </View>
   )
 
@@ -76,12 +80,7 @@ const LoginScreen = (): JSX.Element => {
     <Container>
       <Content style={{ paddingHorizontal: 20 }}>
         <HeaderSection />
-        <Subtitle style={{ marginTop: moderateScale(20), textAlign: 'center' }}>
-          {login.subtitle} Technogi's M11N
-        </Subtitle>
-        <Subtitle style={{ textAlign: 'center' }}>Demo Mobile App</Subtitle>
         {formSection()}
-        <Button containerStyle={{ marginHorizontal: '20%' }} title={login.signInButton} onPress={() => {}} />
       </Content>
     </Container>
   )
