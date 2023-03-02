@@ -1,11 +1,12 @@
-import { Text, View } from 'react-native'
+import { View } from 'react-native'
 import React from 'react'
+import { Headline } from 'src/components'
 
 // eslint-disable-next-line arrow-body-style
 const SalesScreen = (): JSX.Element => {
   return (
     <View>
-      <Text>SalesScreen</Text>
+      <Headline>Sales Screen</Headline>
     </View>
   )
 }

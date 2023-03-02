@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { mainStyle } from 'src/styles'
 
 import HomeStackScreen from '../home/home-stack.nav'
+import SalesStackScreen from '../sales/sales-stack.nav'
 import { MainTabsNavName, MainTabsStackParamList } from './main-tabs.model'
 
 const MainTab = createBottomTabNavigator<MainTabsStackParamList>()
@@ -47,7 +48,7 @@ const MainTabsStack = (): JSX.Element => (
     })}
   >
     <MainTab.Screen name={MainTabsNavName.HOME_TAB} component={HomeStackScreen} options={{ tabBarLabel: 'Home' }} />
-    <MainTab.Screen name={MainTabsNavName.SALES_TAB} component={HomeStackScreen} options={{ tabBarLabel: 'Sales' }} />
+    <MainTab.Screen name={MainTabsNavName.SALES_TAB} component={SalesStackScreen} options={{ tabBarLabel: 'Sales' }} />
   </MainTab.Navigator>
 )
 
