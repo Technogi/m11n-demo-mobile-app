@@ -10,10 +10,4 @@ export type LoginForm = {
   [LoginFormName.PASSWORD]: string
 }
 
-export type SignInHook = {
-  data?: UserLogin
-  loading: boolean
-  error: boolean
-}
-
 export type UserLoginPromise = Promise<[UserLogin, any]>

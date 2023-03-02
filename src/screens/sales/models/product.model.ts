@@ -11,3 +11,5 @@ export type ProductResponse = {
   total: number
   items: Array<Product>
 }
+
+export type ProductsPromise = Promise<[ProductResponse, any]>

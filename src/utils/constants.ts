@@ -62,11 +62,3 @@ export const getMonthName = (date: Date): string => {
 
   return monthNameArray[date?.getMonth() ?? 0]
 }
-
-export const formatNumber = (number: number): string => {
-  let formattedNumber = '0'
-
-  if (number) formattedNumber = `${number?.toString()?.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`
-
-  return formattedNumber
-}

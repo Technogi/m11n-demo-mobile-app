@@ -255,3 +255,11 @@ export const isJsonString = (value: any): boolean => {
 
   return false
 }
+
+export const formatNumber = (number: number): string => {
+  let formattedNumber = '0'
+
+  if (number) formattedNumber = `${number?.toString()?.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`
+
+  return formattedNumber
+}

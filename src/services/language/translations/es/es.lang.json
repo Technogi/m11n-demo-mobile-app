@@ -27,5 +27,8 @@
     "saving": "GUARDANDO",
     "confirming": "CONFIRMANDO",
     "resending": "REENVIANDO CÓDIGO"
+  },
+  "sales": {
+    "title": "Estadísticas de Ventas"
   }
 }

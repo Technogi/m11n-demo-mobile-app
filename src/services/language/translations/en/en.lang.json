@@ -27,5 +27,8 @@
     "saving": "SAVING",
     "confirming": "CONFIRMING",
     "resending": "RESENDING CODE"
+  },
+  "sales": {
+    "title": "Sales Stats"
   }
 }

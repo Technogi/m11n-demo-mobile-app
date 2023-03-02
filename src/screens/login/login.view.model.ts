@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react'
 import { Control, FieldErrors, FieldValues, useForm, UseFormHandleSubmit } from 'react-hook-form'
+import { InitialState } from 'src/models'
 
 import { useIsSignIn } from 'src/recoil/auth'
 import { setUserLoginData, UserLogin } from 'src/services/amplify/auth'
 import { promiseTryCatch } from 'src/utils/helpers'
 
-import { LoginForm, LoginFormName, SignInHook } from './models/login.model'
+import { LoginForm, LoginFormName } from './models/login.model'
 import signInUseCase from './use-cases/sing-in.use.case'
 
-const INITIAL_STATE_LOGIN: SignInHook = {
+const INITIAL_STATE_LOGIN: InitialState<UserLogin> = {
   data: null,
   loading: false,
   error: false,
@@ -35,7 +36,7 @@ const useLoginViewModel = (): {
     },
   })
 
-  const [state, setState] = useState<SignInHook>(INITIAL_STATE_LOGIN)
+  const [state, setState] = useState<InitialState<UserLogin>>(INITIAL_STATE_LOGIN)
   const { data, loading, error } = state
 
   const { setSignedIn } = useIsSignIn()
