@@ -29,6 +29,9 @@
     "resending": "REENVIANDO CÓDIGO"
   },
   "sales": {
-    "title": "Estadísticas de Ventas"
+    "title": "Estadísticas de Ventas",
+    "price": "Precio",
+    "noSales": "No. de Ventas",
+    "totalSold": "Total Vendido"
   }
 }

@@ -29,6 +29,9 @@
     "resending": "RESENDING CODE"
   },
   "sales": {
-    "title": "Sales Stats"
+    "title": "Sales Stats",
+    "price": "Price",
+    "noSales": "No. Sales",
+    "totalSold": "Total Sold"
   }
 }
