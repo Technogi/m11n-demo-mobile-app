@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
 import { View } from 'react-native'
-import { Control, FieldValues, useForm } from 'react-hook-form'
 import { moderateScale } from 'react-native-size-matters'
 
 import { Button, Container, Content, Headline, Subtitle, TextInputForm } from 'src/components'
@@ -8,6 +7,7 @@ import { LocalizationContext } from 'src/context/localization/localization.conte
 
 import { LoginFormName } from './models/login.model'
 import styles from './styles'
+import useLoginViewModel from './login.view.model'
 
 /**
  * Screen to show login (email and password inputs)
@@ -16,17 +16,7 @@ import styles from './styles'
  * @return {JSX.Element}  {JSX.Element}
  */
 const LoginScreen = (): JSX.Element => {
-  const {
-    control,
-    // handleSubmit,
-    formState: { errors },
-  } = useForm({
-    mode: 'all',
-    defaultValues: {
-      [LoginFormName.EMAIL]: '',
-      [LoginFormName.PASSWORD]: '',
-    },
-  })
+  const { fieldErrors, control, handleSubmit, onSubmit, loading } = useLoginViewModel()
 
   const {
     translations: {
@@ -51,8 +41,8 @@ const LoginScreen = (): JSX.Element => {
       <TextInputForm
         name={LoginFormName.EMAIL}
         placeholder={placeholders.email}
-        control={control as unknown as Control<FieldValues>}
-        errors={errors}
+        control={control}
+        errors={fieldErrors}
         keyboardType="email-address"
         autoCapitalize="none"
         rules={{ required: true }}
@@ -61,8 +51,8 @@ const LoginScreen = (): JSX.Element => {
       <TextInputForm
         name={LoginFormName.PASSWORD}
         placeholder={placeholders.password}
-        control={control as unknown as Control<FieldValues>}
-        errors={errors}
+        control={control}
+        errors={fieldErrors}
         // inputRef={phoneNumberRef}
         rules={{ required: true }}
         containerStyle={{ marginTop: moderateScale(20) }}
@@ -72,7 +62,12 @@ const LoginScreen = (): JSX.Element => {
         autoCorrect={false}
       />
 
-      <Button containerStyle={submitButtonStyle} title={login.signInButton} onPress={() => {}} />
+      <Button
+        containerStyle={submitButtonStyle}
+        title={login.signInButton}
+        onPress={handleSubmit(onSubmit)}
+        spinnerTitle={loading ? login.signingInSpinner : null}
+      />
     </View>
   )
 

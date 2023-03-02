@@ -1,5 +1,7 @@
-import LoginView from './login/login.view'
+import HomeScreen from './home/home.screen'
+import LoginScreen from './login/login.screen'
 
 export default {
-  LoginView,
+  LoginScreen,
+  HomeScreen,
 }

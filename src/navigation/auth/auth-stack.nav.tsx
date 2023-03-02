@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import screens from 'src/screens'
 
-import { AuthNavName, AuthStackParamList } from './types'
+import { AuthNavName, AuthStackParamList } from './auth-stack.model'
 
 const AuthStack = createNativeStackNavigator<AuthStackParamList>()
 
@@ -14,7 +14,7 @@ const AuthStack = createNativeStackNavigator<AuthStackParamList>()
  */
 const AuthStackScreen = (): JSX.Element => (
   <AuthStack.Navigator initialRouteName={AuthNavName.LOGIN}>
-    <AuthStack.Screen name={AuthNavName.LOGIN} component={screens.LoginView} options={{ headerShown: false }} />
+    <AuthStack.Screen name={AuthNavName.LOGIN} component={screens.LoginScreen} options={{ headerShown: false }} />
   </AuthStack.Navigator>
 )
 

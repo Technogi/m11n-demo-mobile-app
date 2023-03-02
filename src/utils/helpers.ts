@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Alert, Linking } from 'react-native'
 // import Toast, { ToastPosition } from 'react-native-toast-message'
@@ -77,12 +78,12 @@ export const openLink = (url: string, errorMessageAlert?: string): void => {
   Linking.canOpenURL(url)
     .then(() => {
       Linking.openURL(url).catch(error => {
-        errorHandler(error, 'Error openURL:')
+        // errorHandler(error, 'Error openURL:')
         if (errorMessageAlert) okAlert(errorMessageAlert)
       })
     })
     .catch(error => {
-      errorHandler(error, 'Error canOpenURL:')
+      // errorHandler(error, 'Error canOpenURL:')
       if (errorMessageAlert) okAlert(errorMessageAlert)
     })
 }
@@ -210,7 +211,7 @@ export const promiseTryCatch = async <T>(
     return [data, null]
   } catch (error) {
     // console.log(JSON.stringify(error, null, 4))
-    if (consoleError) errorHandler(error, errorMessage)
+    // if (consoleError) errorHandler(error, errorMessage)
     return [null, error]
   }
 }

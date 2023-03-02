@@ -74,5 +74,6 @@ module.exports = {
     "@typescript-eslint/dot-notation": 0,
     "import/order": ["error", {"groups": ["builtin", "external", "internal", "parent", "sibling", "index", "object", "type"]}],
     "import/no-named-as-default-member": 0,
+    "import/prefer-default-export": "off" | "warn" | "error",
   }
 };
