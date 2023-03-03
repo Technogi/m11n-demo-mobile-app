@@ -2,7 +2,7 @@
 import { View } from 'react-native'
 import React from 'react'
 import { moderateScale } from 'react-native-size-matters'
-// import Feather from 'react-native-vector-icons/Feather'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 
 import { mainStyle } from 'src/styles'
 
@@ -22,17 +22,7 @@ import { mainStyle } from 'src/styles'
  * }
  * @return {JSX.Element}  {JSX.Element}
  */
-const MainTabIcon = ({
-  custom = false,
-  iconName,
-  color,
-  size,
-}: {
-  iconName: string
-  color: string
-  size: number
-  custom?: boolean
-}): JSX.Element => (
+const MainTabIcon = ({ iconName, color, size }: { iconName: string; color: string; size: number }): JSX.Element => (
   <View
     style={{
       ...mainStyle.circleStyle(35),
@@ -42,7 +32,7 @@ const MainTabIcon = ({
   >
     <View style={{ marginLeft: moderateScale(1), marginBottom: moderateScale(1) }}>
       <View style={{ marginLeft: moderateScale(1), marginBottom: moderateScale(1) }}>
-        {/* <Feather name={iconName} color={color} size={size} /> */}
+        <MaterialCommunityIcons name={iconName} color={color} size={size} />
       </View>
     </View>
   </View>

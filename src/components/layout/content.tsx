@@ -17,7 +17,7 @@ import { mainStyle } from 'src/styles'
  * @returns {JSX.Element} JSX.Element
  */
 const Content = ({ style, children }: { style?: ViewStyle; children: JSX.Element | JSX.Element[] }): JSX.Element => (
-  <View style={{ ...mainStyle.screenStyle, paddingHorizontal: moderateScale(10), ...style }}>{children}</View>
+  <View style={{ ...mainStyle.screenStyle, paddingHorizontal: moderateScale(15), ...style }}>{children}</View>
 )
 
 export default Content

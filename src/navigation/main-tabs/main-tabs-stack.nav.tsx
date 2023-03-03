@@ -1,7 +1,8 @@
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
-import { mainStyle } from 'src/styles'
+import { mainStyle, theme } from 'src/styles'
+import { MainTabIcon } from 'src/components/navigation'
 
 import HomeStackScreen from '../home/home-stack.nav'
 import SalesStackScreen from '../sales/sales-stack.nav'
@@ -16,35 +17,24 @@ const MainTab = createBottomTabNavigator<MainTabsStackParamList>()
  */
 const MainTabsStack = (): JSX.Element => (
   <MainTab.Navigator
-    screenOptions={({}) => ({
+    screenOptions={({ route }) => ({
       ...mainStyle.bottomTabOptions(),
-      // tabBarIcon: ({ color, size }) => {
-      //   let iconName
-      //   let iconSize = size
-      //   let custom = false
+      tabBarIcon: ({ color }) => {
+        let iconName
+        const iconSize = theme.ICON_SIZE_XL
 
-      //   switch (route.name) {
-      //     case MainTabsNavName.GOALS_TAB:
-      //       iconName = 'award'
-      //       break
+        switch (route.name) {
+          case MainTabsNavName.SALES_TAB:
+            iconName = 'trending-up'
+            break
 
-      //     case MainTabsNavName.QA_TAB:
-      //       custom = true
-      //       iconName = 'qa'
-      //       iconSize = theme.ICON_SIZE_LG
-      //       break
+          default:
+            iconName = 'home'
+            break
+        }
 
-      //     case MainTabsNavName.PROFILE_TAB:
-      //       iconName = 'user'
-      //       break
-
-      //     default:
-      //       iconName = 'activity'
-      //       break
-      //   }
-
-      //   return <MainTabIcon custom={custom} iconName={iconName} color={color} size={iconSize} />
-      // },
+        return <MainTabIcon iconName={iconName} color={color} size={iconSize} />
+      },
     })}
   >
     <MainTab.Screen name={MainTabsNavName.HOME_TAB} component={HomeStackScreen} options={{ tabBarLabel: 'Home' }} />

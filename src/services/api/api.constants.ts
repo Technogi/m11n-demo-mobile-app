@@ -10,6 +10,8 @@ const urlApi = {
   PROD: 'https://api-m11n-demo.io.technogi.com.mx/',
 }
 
+export const URL_INFO = 'https://webapp.m11n.technogi.com.mx/info'
+
 export const API_BASE_URL = (): string => {
   let currentUrlApi = urlApi.PROD
 

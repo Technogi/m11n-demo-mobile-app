@@ -13,6 +13,7 @@ import Caption from './text/caption'
 import TextInputForm from './forms/text-input/text-input.form'
 import HorizontalSeparator from './horizontal-separator'
 import SecondaryButton from './buttons/secondary.button'
+import LogoHeader from './logo-header'
 // import CustomIcon from './custom-icon'
 
 // import { ToastType } from './toast/types'
@@ -37,4 +38,5 @@ export {
   HorizontalSeparator,
   // CustomIcon,
   TextInputForm,
+  LogoHeader,
 }

@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { View } from 'react-native'
 import { moderateScale } from 'react-native-size-matters'
 
-import { Button, Container, Content, Headline, Subtitle, TextInputForm } from 'src/components'
+import { Button, Container, Content, LogoHeader, Subtitle, TextInputForm } from 'src/components'
 import { LocalizationContext } from 'src/context/localization/localization.context'
 
 import { LoginFormName } from './models/login.model'
@@ -25,11 +25,11 @@ const LoginScreen = (): JSX.Element => {
     },
   } = useContext(LocalizationContext)
 
-  const { titleStyle, subtitleStyle, submitButtonStyle } = styles
+  const { subtitleStyle, submitButtonStyle } = styles
 
   const HeaderSection = (): JSX.Element => (
     <View style={{ alignItems: 'center' }}>
-      <Headline style={titleStyle}>POStats</Headline>
+      <LogoHeader />
 
       <Subtitle style={subtitleStyle}>{login.subtitle} Technogi's M11N</Subtitle>
       <Subtitle style={{ textAlign: 'center' }}>Demo Mobile App</Subtitle>

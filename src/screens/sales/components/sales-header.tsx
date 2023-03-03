@@ -12,7 +12,7 @@ const SalesHeader = (): JSX.Element => {
 
   return (
     <View style={{ alignItems: 'center' }}>
-      <Headline style={{ marginVertical: moderateScale(30) }}>{sales.title}</Headline>
+      <Headline style={{ marginVertical: moderateScale(20) }}>{sales.title}</Headline>
     </View>
   )
 }
