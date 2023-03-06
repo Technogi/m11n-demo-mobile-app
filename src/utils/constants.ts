@@ -63,17 +63,55 @@ export const getMonthName = (date: Date): string => {
   return monthNameArray[date?.getMonth() ?? 0]
 }
 
-export const Months = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December',
+export const Months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEPT', 'OCT', 'NOV', 'DEC']
+
+export const MonthsFullName = [
+  {
+    id: 'JAN',
+    name: 'JANUARY',
+  },
+  {
+    id: 'FEB',
+    name: 'FEBRUARY',
+  },
+  {
+    id: 'MAR',
+    name: 'MARCH',
+  },
+  {
+    id: 'APR',
+    name: 'APRIL',
+  },
+  {
+    id: 'MAY',
+    name: 'MAY',
+  },
+  {
+    id: 'JUN',
+    name: 'JUNE',
+  },
+  {
+    id: 'JUL',
+    name: 'JULY',
+  },
+  {
+    id: 'AUG',
+    name: 'AUGUST',
+  },
+  {
+    id: 'SEP',
+    name: 'SEPTEMBER',
+  },
+  {
+    id: 'OCT',
+    name: 'OCTOBER',
+  },
+  {
+    id: 'NOV',
+    name: 'NOVEMBER',
+  },
+  {
+    id: 'DEC',
+    name: 'DECEMBER',
+  },
 ]
