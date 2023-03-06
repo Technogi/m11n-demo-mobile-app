@@ -15,6 +15,11 @@ const SalesStack = createNativeStackNavigator<SalesStackParamList>()
 const SalesStackScreen = (): JSX.Element => (
   <SalesStack.Navigator>
     <SalesStack.Screen name={SalesNavName.SALES} component={screens.SalesScreen} options={{ headerShown: false }} />
+    <SalesStack.Screen
+      name={SalesNavName.SALES_FORECASTS}
+      component={screens.SalesForecastsScreen}
+      options={{ headerShown: false }}
+    />
   </SalesStack.Navigator>
 )
 

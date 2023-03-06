@@ -2,16 +2,19 @@ import { StyleSheet, View } from 'react-native'
 import React, { useContext } from 'react'
 import { moderateScale } from 'react-native-size-matters'
 import CircularProgress from 'react-native-circular-progress-indicator'
+import { useNavigation } from '@react-navigation/native'
 
 import { formatNumber } from 'src/utils/helpers'
 import { mainStyle, theme } from 'src/styles'
 import { LocalizationContext } from 'src/context/localization/localization.context'
-
 import { Body, Card, PressableOpacity } from 'src/components'
+import { SalesNavName, SalesNavProps } from 'src/navigation/sales/sales-stack.model'
+
 import { Product } from '../models/product.model'
 
 const ProductItem = ({ item }: { item: Product }): JSX.Element => {
-  const { name, price, sales: productSales, total, performance } = item
+  const { name, price, sales: productSales, total, performance, id } = item
+  const { navigation } = { navigation: useNavigation() } as SalesNavProps
 
   const {
     translations: { sales },
@@ -32,7 +35,10 @@ const ProductItem = ({ item }: { item: Product }): JSX.Element => {
 
   return (
     <Card style={cardContainer}>
-      <PressableOpacity containerStyle={{ flexDirection: 'row' }} onPress={() => {}}>
+      <PressableOpacity
+        containerStyle={{ flexDirection: 'row' }}
+        onPress={() => navigation.navigate(SalesNavName.SALES_FORECASTS, { id, name })}
+      >
         <View style={{ flex: 0.3 }}>
           <CircularProgress
             value={performanceFormatted}
