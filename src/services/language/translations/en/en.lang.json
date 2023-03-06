@@ -28,6 +28,11 @@
     "confirming": "CONFIRMING",
     "resending": "RESENDING CODE"
   },
+  "home": {
+    "title": "Your POS reaching the sky!",
+    "subtitle": "For more information on how this app was implemented",
+    "selectHereButton": "SELECT HERE"
+  },
   "sales": {
     "title": "Sales Stats",
     "price": "Price",

@@ -7,7 +7,7 @@ import { useNavigation } from '@react-navigation/native'
 import { formatNumber } from 'src/utils/helpers'
 import { mainStyle, theme } from 'src/styles'
 import { LocalizationContext } from 'src/context/localization/localization.context'
-import { Body, Card, PressableOpacity } from 'src/components'
+import { Body, Caption, Card, PressableOpacity } from 'src/components'
 import { SalesNavName, SalesNavProps } from 'src/navigation/sales/sales-stack.model'
 
 import { Product } from '../models/product.model'
@@ -39,7 +39,7 @@ const ProductItem = ({ item }: { item: Product }): JSX.Element => {
         containerStyle={{ flexDirection: 'row' }}
         onPress={() => navigation.navigate(SalesNavName.SALES_FORECASTS, { id, name })}
       >
-        <View style={{ flex: 0.3 }}>
+        <View style={{ flex: 0.3, alignItems: 'center' }}>
           <CircularProgress
             value={performanceFormatted}
             radius={moderateScale(35)}
@@ -49,9 +49,12 @@ const ProductItem = ({ item }: { item: Product }): JSX.Element => {
             inActiveStrokeColor={getCircleColor(performance)}
             inActiveStrokeOpacity={0.2}
           />
+          <Caption bold style={{ textAlign: 'center', marginTop: moderateScale(5) }}>
+            Desempeño de Ventas
+          </Caption>
         </View>
 
-        <View style={{ flex: 0.7 }}>
+        <View style={{ flex: 0.7, paddingLeft: moderateScale(10), justifyContent: 'center' }}>
           <Body bold style={{ color: theme.PRIMARY_COLOR }}>
             {name}
           </Body>

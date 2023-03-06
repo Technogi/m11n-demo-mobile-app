@@ -28,6 +28,11 @@
     "confirming": "CONFIRMANDO",
     "resending": "REENVIANDO CÓDIGO"
   },
+  "home": {
+    "title": "¡Tu POS llegando al cielo!",
+    "subtitle": "Para obtener más información sobre cómo se implementó esta aplicación",
+    "selectHereButton": "SELECCIONA AQUÍ"
+  },
   "sales": {
     "title": "Estadísticas de Ventas",
     "price": "Precio",

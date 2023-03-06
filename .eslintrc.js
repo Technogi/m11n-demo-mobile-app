@@ -75,5 +75,6 @@ module.exports = {
     "import/order": ["error", {"groups": ["builtin", "external", "internal", "parent", "sibling", "index", "object", "type"]}],
     "import/no-named-as-default-member": 0,
     "import/prefer-default-export": "off" | "warn" | "error",
+    "consistent-return": ["error", { "treatUndefinedAsUnspecified": true }],
   }
 };
