@@ -37,6 +37,7 @@
     "title": "Estadísticas de Ventas",
     "price": "Precio",
     "noSales": "No. de Ventas",
-    "totalSold": "Total Vendido"
+    "totalSold": "Total Vendido",
+    "performance": "Desempeño de Ventas"
   }
 }

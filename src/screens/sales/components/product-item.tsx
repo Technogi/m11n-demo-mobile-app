@@ -50,7 +50,7 @@ const ProductItem = ({ item }: { item: Product }): JSX.Element => {
             inActiveStrokeOpacity={0.2}
           />
           <Caption bold style={{ textAlign: 'center', marginTop: moderateScale(5) }}>
-            Desempeño de Ventas
+            {sales.performance}
           </Caption>
         </View>
 

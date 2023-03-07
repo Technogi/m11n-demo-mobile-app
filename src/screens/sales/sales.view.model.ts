@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 import { InitialState } from 'src/models'
 import { Product } from './models/product.model'
@@ -12,8 +12,17 @@ const INITIAL_STATE_SALES: InitialState<Array<Product>> = {
 
 const useSalesViewModel = (): {
   state: InitialState<Array<Product>>
+  refreshing: boolean
+  onRefresh: () => void
 } => {
   const [state, setState] = useState(INITIAL_STATE_SALES)
+  const [refreshing, setRefreshing] = useState(false)
+
+  const onRefresh = useCallback(() => {
+    setRefreshing(true)
+    getProductList()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   useEffect(() => {
     getProductList()
@@ -21,6 +30,8 @@ const useSalesViewModel = (): {
   }, [])
 
   const getProductList = async (): Promise<void> => {
+    setState({ ...INITIAL_STATE_SALES, loading: true })
+
     const [productData] = await getProductsUseCase()
 
     if (productData) {
@@ -28,10 +39,14 @@ const useSalesViewModel = (): {
     } else {
       setState({ ...INITIAL_STATE_SALES, error: true })
     }
+
+    setRefreshing(false)
   }
 
   return {
     state,
+    refreshing,
+    onRefresh,
   }
 }
 

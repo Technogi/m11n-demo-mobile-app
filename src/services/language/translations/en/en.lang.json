@@ -37,6 +37,7 @@
     "title": "Sales Stats",
     "price": "Price",
     "noSales": "No. Sales",
-    "totalSold": "Total Sold"
+    "totalSold": "Total Sold",
+    "performance": "Sales Performance"
   }
 }

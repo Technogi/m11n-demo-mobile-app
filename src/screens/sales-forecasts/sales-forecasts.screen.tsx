@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { ScrollView, ActivityIndicator, View } from 'react-native'
+import React, { useCallback, useEffect, useState } from 'react'
+import { ScrollView, ActivityIndicator, View, RefreshControl } from 'react-native'
 import { useQuery } from '@tanstack/react-query'
 
 import { LineChart } from 'react-native-chart-kit'
@@ -89,7 +89,7 @@ const SalesForecastsScreen = ({ route, navigation }: SalesForecastsNavProps): JS
   })
 
   const [currentPointIndex, setPointIndex] = useState<number>(null)
-
+  const [refreshing, setRefreshing] = useState(false)
   const [rangeIgnored, setRangeIgnored] = useState<number>(ByMonth)
 
   const { data, refetch, isFetching } = useQuery({
@@ -98,12 +98,27 @@ const SalesForecastsScreen = ({ route, navigation }: SalesForecastsNavProps): JS
     enabled: Boolean(id),
   })
 
+  // useEffect(() => {
+  //   refetch()
+  // }, [searchParams, refetch])
+
   useEffect(() => {
+    if (!isFetching) setRefreshing(false)
+  }, [isFetching])
+
+  const onRefresh = useCallback(() => {
+    setRefreshing(true)
     refetch()
-  }, [searchParams, refetch])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
-    <Container scrollProps={{ contentContainerStyle: { flex: 0 } }}>
+    <Container
+      scrollProps={{
+        contentContainerStyle: { flex: 0 },
+        refreshControl: <RefreshControl refreshing={refreshing} onRefresh={() => onRefresh()} />,
+      }}
+    >
       <Content>
         <TitleHeader title={`${name} Sales Forecasts`} navigation={navigation} />
         {!isFetching && data ? (
