@@ -1,4 +1,4 @@
-package com.m11n;
+package com.m11n.app;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;

@@ -1,4 +1,4 @@
-package com.m11n;
+package com.m11n.app;
 
 import android.app.Application;
 import com.facebook.react.PackageList;
