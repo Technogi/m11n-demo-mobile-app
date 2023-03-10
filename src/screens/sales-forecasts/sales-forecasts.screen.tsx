@@ -1,15 +1,19 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { ScrollView, ActivityIndicator, View, RefreshControl } from 'react-native'
 import { useQuery } from '@tanstack/react-query'
+import Modal from 'react-native-modal'
+import Feather from 'react-native-vector-icons/Feather'
+import getDaysInMonth from 'date-fns/getDaysInMonth'
 
 import { LineChart } from 'react-native-chart-kit'
 import { moderateScale } from 'react-native-size-matters'
-import { Body, Card, Container, Content, TitleHeader } from 'src/components'
+import { Body, Card, Container, Content, PressableOpacity, Subtitle, TitleHeader } from 'src/components'
 import { SalesForecastsNavProps } from 'src/navigation/sales/sales-stack.model'
-import { deviceWidth, Months, MonthsFullName } from 'src/utils/constants'
-import { formatNumber, promiseTryCatch } from 'src/utils/helpers'
+import { deviceWidth, MonthsFullName } from 'src/utils/constants'
+import { formatNumber, isNotEmptyArray, promiseTryCatch } from 'src/utils/helpers'
 import { apiGet } from 'src/services/api'
 import { theme } from 'src/styles'
+import styles from './styles'
 
 type SearchParams = {
   s: string
@@ -52,7 +56,7 @@ const fetchFunction =
       const { p10, p50, p90 }: ForecastType = response?.data
 
       const nameFn = (val: string): string =>
-        searchParams?.m === 'monthly' ? Months[new Date(val).getMonth()] : new Date(val).getDate() + ''
+        searchParams?.m === 'monthly' ? MonthsFullName[new Date(val).getMonth()].id : new Date(val).getDate() + ''
 
       p10.forEach(({ Timestamp, Value }) => {
         const item = result.find(({ name }) => name === nameFn(Timestamp))
@@ -82,35 +86,157 @@ const isNumeric = (value): boolean => /^-?\d+$/.test(value)
 
 const SalesForecastsScreen = ({ route, navigation }: SalesForecastsNavProps): JSX.Element => {
   const { id, name } = route?.params
-  const [searchParams, setSearchParamsIgnored] = useState<SearchParams>({
-    s: '2023-03-01T00:00:00',
-    e: '2023-12-01T00:00:00',
-    m: 'monthly',
-  })
+
+  const [searchParams, setSearchParams] = useState<SearchParams>()
 
   const [currentPointIndex, setPointIndex] = useState<number>(null)
   const [refreshing, setRefreshing] = useState(false)
   const [rangeIgnored, setRangeIgnored] = useState<number>(ByMonth)
+  const [showModal, setModal] = useState(false)
+  const [indexSelected, setIndexSelected] = useState(-1)
+
+  const { modalStyle, modalContainer, scrollContainer } = styles
 
   const { data, refetch, isFetching } = useQuery({
     queryKey: ['forecast'],
     queryFn: fetchFunction({ searchParams, id }),
-    enabled: Boolean(id),
+    enabled: false,
   })
 
-  // useEffect(() => {
-  //   refetch()
-  // }, [searchParams, refetch])
+  useEffect(() => {
+    if (indexSelected > -1) getDailyRange()
+    else getMonthlyRange()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [indexSelected])
 
   useEffect(() => {
     if (!isFetching) setRefreshing(false)
   }, [isFetching])
+
+  useEffect(() => {
+    if (searchParams) refetch()
+  }, [refetch, searchParams])
+
+  const getMonthlyRange = (): void => {
+    const startDate = getStartDayCurrentMonth()
+    const endDate = getEndDayCurrentMonth()
+    setSearchParams({ s: startDate, e: endDate, m: 'monthly' })
+  }
+
+  const getDailyRange = (): void => {
+    const startDate = getStartDailyMonth()
+    const endDate = getEndDailyMonth()
+    setSearchParams({ s: startDate, e: endDate, m: 'daily' })
+  }
+
+  const formatDateWithoutZ = (date: Date): string => {
+    const splitDate = date.toISOString()?.split('T')
+
+    if (isNotEmptyArray(splitDate)) return `${splitDate[0]}T00:00:00`
+    return null
+  }
+
+  const getStartDayCurrentMonth = (): string => {
+    const currentDate = new Date()
+
+    currentDate.setDate(1)
+
+    return formatDateWithoutZ(currentDate)
+  }
+
+  const getEndDayCurrentMonth = (): string => {
+    const currentDate = new Date()
+    currentDate.setMonth(11)
+
+    currentDate.setDate(getDaysInMonth(currentDate))
+
+    return formatDateWithoutZ(currentDate)
+  }
+
+  const getStartDailyMonth = (): string => {
+    const currentDate = new Date()
+
+    currentDate.setMonth(indexSelected)
+    currentDate.setDate(1)
+
+    return formatDateWithoutZ(currentDate)
+  }
+
+  const getEndDailyMonth = (): string => {
+    const currentDate = new Date()
+
+    currentDate.setMonth(indexSelected)
+    currentDate.setDate(getDaysInMonth(currentDate))
+
+    return formatDateWithoutZ(currentDate)
+  }
 
   const onRefresh = useCallback(() => {
     setRefreshing(true)
     refetch()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  const selectOption = (index: number): void => {
+    setModal(false)
+    setIndexSelected(index)
+  }
+
+  const MonthsModal = (): JSX.Element => (
+    <Modal isVisible={showModal} onBackdropPress={() => setModal(false)} style={modalContainer}>
+      <View style={modalStyle}>
+        <View style={{ flexDirection: 'row', paddingHorizontal: moderateScale(20) }}>
+          <View style={{ flex: 0.9, alignItems: 'center' }}>
+            <Subtitle bold>Select an option</Subtitle>
+          </View>
+
+          <PressableOpacity hitSlop={5} containerStyle={{ flex: 0.1 }} onPress={() => setModal(false)}>
+            <Feather name="x" color={theme.PRIMARY_COLOR} size={theme.ICON_SIZE_XL} />
+          </PressableOpacity>
+        </View>
+
+        <ScrollView contentContainerStyle={scrollContainer}>
+          <PressableOpacity
+            containerStyle={{ alignItems: 'center', marginTop: moderateScale(20) }}
+            onPress={() => selectOption(-1)}
+          >
+            <Body>Monthly</Body>
+          </PressableOpacity>
+
+          {MonthsFullName?.map((month, index) => {
+            if (index >= new Date().getMonth()) {
+              return (
+                <PressableOpacity
+                  key={month.id}
+                  containerStyle={{ alignItems: 'center', marginTop: moderateScale(20) }}
+                  onPress={() => selectOption(index)}
+                >
+                  <Body>{month?.name}</Body>
+                </PressableOpacity>
+              )
+            }
+
+            return null
+          })}
+        </ScrollView>
+      </View>
+    </Modal>
+  )
+
+  const MonthSelect = (): JSX.Element => (
+    <PressableOpacity
+      containerStyle={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}
+      onPress={() => setModal(true)}
+    >
+      <View style={{ paddingRight: moderateScale(12) }}>
+        <Subtitle>{indexSelected > -1 ? MonthsFullName[indexSelected]?.name : 'Monthly'}</Subtitle>
+      </View>
+
+      <View style={{}}>
+        <Feather name="chevron-down" color={theme.PRIMARY_COLOR} size={theme.ICON_SIZE_XL} />
+      </View>
+    </PressableOpacity>
+  )
 
   return (
     <Container
@@ -121,6 +247,7 @@ const SalesForecastsScreen = ({ route, navigation }: SalesForecastsNavProps): JS
     >
       <Content>
         <TitleHeader title={`${name} Sales Forecasts`} navigation={navigation} />
+        <MonthSelect />
         {!isFetching && data ? (
           <>
             <ScrollView horizontal contentContainerStyle={{ paddingVertical: moderateScale(15) }}>
@@ -190,6 +317,7 @@ const SalesForecastsScreen = ({ route, navigation }: SalesForecastsNavProps): JS
             <ActivityIndicator size="large" color={theme.PRIMARY_COLOR} />
           </View>
         )}
+        <MonthsModal />
       </Content>
     </Container>
   )
