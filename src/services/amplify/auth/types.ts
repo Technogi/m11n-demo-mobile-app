@@ -20,19 +20,6 @@ export enum UserRole {
   STANDARD_USER = 'standard',
 }
 
-export enum AuthErrorMessage {
-  NOT_AUTHORIZED = 'Incorrect email or mobile number',
-  INVALID_PARAMETER = 'You must enter your data to be able to log in',
-  SESSION_NOT_FOUND = 'User session not found',
-  REFRESH_TOKEN = 'Error refreshing user token ',
-  CODE_MISMATCH = 'Invalid code',
-  USERNAME_EXISTS = 'The number is already registered',
-  USER_NOT_CONFIRMED = 'The number has not been confirmed',
-  USER_LAMBDA_VALIDATION = 'Invalid company code',
-  NO_AVAILABLE_USERS_LEFT = '+El código excede el número de usuarios. Por favor contacta al área de R.H. de tu empresa para que te proporcione un nuevo código',
-  LIMIT_EXCEEDED = 'You have reached the maximum number of attempts. Please try again in 15 minutes.',
-}
-
 export enum CognitoChallengeName {
   NEW_PASSWORD = 'NEW_PASSWORD_REQUIRED',
 }

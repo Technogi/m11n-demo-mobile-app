@@ -1,9 +1,13 @@
 /* eslint-disable prefer-destructuring */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable max-classes-per-file */
-import { errorMessage } from 'src/services/errors'
+import { translations } from 'src/services/language'
 import { isNotEmptyArray } from 'src/utils/helpers'
-import { CognitoError, AuthErrorMessage, AuthErrorName } from './types'
+import { CognitoError, AuthErrorName } from './types'
+
+const {
+  errors: { auth, generic },
+} = translations
 
 /**
  * Returns a cognito error message.
@@ -13,7 +17,7 @@ import { CognitoError, AuthErrorMessage, AuthErrorName } from './types'
  * @return {string}  {string}
  */
 export const cognitoErrorHandler = (error: string): string => {
-  let authErrorMessage = errorMessage.DEFAULT
+  let authErrorMessage = generic
   let cognitoError: CognitoError
 
   const errorArray = String(error)?.split(':')
@@ -26,43 +30,35 @@ export const cognitoErrorHandler = (error: string): string => {
   // eslint-disable-next-line no-underscore-dangle
   switch (cognitoError?.__type) {
     case AuthErrorName.NOT_AUTHORIZED:
-      authErrorMessage = AuthErrorMessage.NOT_AUTHORIZED
+      authErrorMessage = auth.notAuthorized
       break
 
     case AuthErrorName.USER_NOT_FOUND:
-      authErrorMessage = AuthErrorMessage.NOT_AUTHORIZED
+      authErrorMessage = auth.notAuthorized
       break
 
     case AuthErrorName.INVALID_PARAMETER:
-      authErrorMessage = AuthErrorMessage.INVALID_PARAMETER
+      authErrorMessage = auth.invalidParameter
       break
 
     case AuthErrorName.CODE_MISMATCH:
-      authErrorMessage = AuthErrorMessage.CODE_MISMATCH
+      authErrorMessage = auth.codeMismatch
       break
 
     case AuthErrorName.USERNAME_EXISTS:
-      authErrorMessage = AuthErrorMessage.USERNAME_EXISTS
+      authErrorMessage = auth.usernameExists
       break
 
     case AuthErrorName.USER_NOT_CONFIRMED:
-      authErrorMessage = AuthErrorMessage.USER_NOT_CONFIRMED
-      break
-
-    case AuthErrorName.USER_LAMBDA_VALIDATION:
-      if (cognitoError?.message.endsWith('NO_AVAILABLE_USERS_LEFT.')) {
-        authErrorMessage = AuthErrorMessage.NO_AVAILABLE_USERS_LEFT
-      } else {
-        authErrorMessage = AuthErrorMessage.USER_LAMBDA_VALIDATION
-      }
+      authErrorMessage = auth.userNotConfirmed
       break
 
     case AuthErrorName.LIMIT_EXCEEDED:
-      authErrorMessage = AuthErrorMessage.LIMIT_EXCEEDED
+      authErrorMessage = auth.limitExceeded
       break
 
     default:
-      authErrorMessage = errorMessage.DEFAULT
+      authErrorMessage = generic
       break
   }
 

@@ -39,5 +39,18 @@
     "noSales": "No. Sales",
     "totalSold": "Total Sold",
     "performance": "Sales Performance"
+  },
+  "errors": {
+    "generic": "An unexpected error occurred, please try again",
+    "auth": {
+      "notAuthorized": "Incorrect email or password",
+      "invalidParameter": "You must enter your data to be able to log in",
+      "sessionNotFound": "User session not found",
+      "refreshToken": "Error refreshing user token ",
+      "codeMismatch": "Invalid code",
+      "usernameExists": "User is already registered",
+      "userNotConfirmed": "User has not been confirmed",
+      "limitExceeded": "You have reached the maximum number of attempts. Please try again in 15 minutes."
+    }
   }
 }

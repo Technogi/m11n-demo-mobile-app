@@ -39,5 +39,18 @@
     "noSales": "No. de Ventas",
     "totalSold": "Total Vendido",
     "performance": "Desempeño de Ventas"
+  },
+  "errors": {
+    "generic": "Ha ocurrido un error, por favor intenta de nuevo",
+    "auth": {
+      "notAuthorized": "Correo electrónico o contraseña incorrecta",
+      "invalidParameter": "Debes ingresar tus datos para iniciar sesión",
+      "sessionNotFound": "Sesión de usuario no encontrada",
+      "refreshToken": "Error refrescando token de usuario ",
+      "codeMismatch": "Código inválido",
+      "usernameExists": "E usuario ya está registrado",
+      "userNotConfirmed": "El usuario no ha sido confirmado",
+      "limitExceeded": "Has alcanzado el máximo de intentos. Por favor intentan en 15 minutos."
+    }
   }
 }

@@ -1,12 +1,7 @@
 import React, { createContext, useState } from 'react'
-import LocalizedStrings from 'react-native-localization'
+import { translations } from 'src/services/language'
 
 // import { setCurrentLanguageStorage } from 'src/services/language/language.service'
-import { es, en } from 'src/services/language/translations'
-
-const languages = { en, es }
-
-export const translations = new LocalizedStrings(languages)
 
 type LocalizationContextProps = {
   translations?: typeof translations
