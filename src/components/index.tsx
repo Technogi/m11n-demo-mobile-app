@@ -5,7 +5,7 @@ import PressableOpacity from './buttons/pressable-opacity'
 // import RoundedContent from './rounded-content'
 // import VerticalSpacer from './vertical-spacer'
 import Button from './buttons/button'
-// import toastConfig from './toast/toast-config'
+import toastConfig from './toast/toast-config'
 import Headline from './text/headline'
 import Subtitle from './text/subtitle'
 import Body from './text/body'
@@ -17,7 +17,7 @@ import LogoHeader from './logo-header'
 import TitleHeader from './title-header'
 // import CustomIcon from './custom-icon'
 
-// import { ToastType } from './toast/types'
+import { ToastType } from './toast/types'
 
 export {
   Container,
@@ -28,8 +28,8 @@ export {
   // VerticalSpacer,
   Button,
   SecondaryButton,
-  // toastConfig,
-  // ToastType,
+  toastConfig,
+  ToastType,
   Headline,
   Subtitle,
   Body,

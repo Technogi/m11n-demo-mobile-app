@@ -3,8 +3,9 @@ import { Auth } from 'aws-amplify'
 import { ISignUpResult } from 'amazon-cognito-identity-js'
 import { SetterOrUpdater } from 'recoil'
 
-import { promiseTryCatch } from 'src/utils/helpers'
+import { promiseTryCatch, showToast } from 'src/utils/helpers'
 import { errorHandler, ErrorType } from 'src/services/errors'
+import { messages } from 'src/utils/constants'
 
 import {
   ConfirmSignUpHook,
@@ -269,7 +270,7 @@ export const signOut = async (setSignedIn: SetterOrUpdater<boolean>): Promise<vo
     setSignedIn(false)
   } catch (error) {
     errorHandler(error, 'error signOut: ')
-    // showToast(messages.API_ERROR)
+    showToast(messages.API_ERROR)
   }
 }
 

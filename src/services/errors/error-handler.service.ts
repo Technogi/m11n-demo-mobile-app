@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { isJsonString } from 'src/utils/helpers'
+import { isJsonString, showToast } from 'src/utils/helpers'
 
 import { cognitoErrorHandler } from '../amplify/auth/auth-errors.service'
 import { errorMessage, ErrorType } from './types'
@@ -44,6 +44,6 @@ export const errorHandler = (
         break
     }
 
-    // showToast(errorMessageToast)
+    showToast(errorMessageToast)
   }
 }

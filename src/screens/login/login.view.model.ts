@@ -4,6 +4,7 @@ import { InitialState } from 'src/models'
 
 import { useIsSignIn } from 'src/recoil/auth'
 import { setUserLoginData, UserLogin } from 'src/services/amplify/auth'
+import { errorHandler, ErrorType } from 'src/services/errors'
 import { promiseTryCatch } from 'src/utils/helpers'
 
 import { LoginForm, LoginFormName } from './models/login.model'
@@ -57,13 +58,13 @@ const useLoginViewModel = (): {
   const signIn = async (email: string, password: string): Promise<void> => {
     setState({ ...INITIAL_STATE_LOGIN, loading: true })
 
-    const [user, errorSignInIgnored] = await signInUseCase(email, password)
+    const [user, errorSignIn] = await signInUseCase(email, password)
 
     if (user) {
       setUserLoginData(user)
       setState({ ...INITIAL_STATE_LOGIN, data: user })
     } else {
-      // errorHandler(errorSignIn, undefined, true, ErrorType.LOGIN)
+      errorHandler(errorSignIn, undefined, true, ErrorType.LOGIN)
       setState({ ...INITIAL_STATE_LOGIN, error: true })
     }
   }

@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Alert, Linking } from 'react-native'
-// import Toast, { ToastPosition } from 'react-native-toast-message'
+import Toast, { ToastPosition } from 'react-native-toast-message'
+import { ToastType } from 'src/components'
 
 import { errorHandler } from 'src/services/errors'
-// import { ToastType } from 'src/components/common'
 
 // import { theme } from 'src/styles'
 import { deviceWidth } from './constants'
@@ -111,21 +111,21 @@ export const removeWhitespace = (text: string): string => {
  * @param {number} [durationInSeconds=4] default value: 4
  * @param {ToastPosition} [position='bottom'] default value: 'bottom'
  */
-// export const showToast = (
-//   message: string,
-//   type: ToastType | 'error' | 'success' | 'info' | 'warning' = ToastType.ERROR,
-//   title?: string,
-//   durationInSeconds = 4,
-//   position: ToastPosition = 'bottom',
-// ): void => {
-//   Toast.show({
-//     type,
-//     text1: title,
-//     text2: message,
-//     visibilityTime: durationInSeconds * 1000,
-//     position,
-//   })
-// }
+export const showToast = (
+  message: string,
+  type: ToastType | 'error' | 'success' | 'info' | 'warning' = ToastType.ERROR,
+  title?: string,
+  durationInSeconds = 4,
+  position: ToastPosition = 'bottom',
+): void => {
+  Toast.show({
+    type,
+    text1: title,
+    text2: message,
+    visibilityTime: durationInSeconds * 1000,
+    position,
+  })
+}
 
 /**
  * Function used to show an alert with one button

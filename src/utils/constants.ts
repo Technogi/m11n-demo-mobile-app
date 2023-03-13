@@ -26,6 +26,7 @@ export const isDebugMode = globalAny.__REMOTEDEV__
 
 export const messages = {
   ACCOUNT_CREATED: 'Account created successfully.',
+  API_ERROR: 'Parece que tuvimos un problema, por favor intenta de nuevo',
 }
 
 export const logoDimensions = {
