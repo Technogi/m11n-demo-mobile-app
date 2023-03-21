@@ -6,7 +6,7 @@ import { moderateScale } from 'react-native-size-matters'
  * Returns a card component.
  *
  * @param {({
- *   children?: JSX.Element | JSX.Element[]
+ *   children: JSX.Element | JSX.Element[]
  *   style?: ViewStyle
  * })} {
  *   children: child component,
@@ -14,7 +14,7 @@ import { moderateScale } from 'react-native-size-matters'
  * }
  * @returns {JSX.Element} JSX.Element
  */
-const Card = ({ children, style }: { children?: JSX.Element | JSX.Element[]; style?: ViewStyle }): JSX.Element => {
+const Card = ({ children, style }: { children: JSX.Element | JSX.Element[]; style?: ViewStyle }): JSX.Element => {
   const { viewStyle } = styles
 
   return <View style={{ ...viewStyle, ...style }}>{children}</View>

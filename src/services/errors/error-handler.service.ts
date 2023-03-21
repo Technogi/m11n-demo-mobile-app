@@ -5,10 +5,6 @@ import { cognitoErrorHandler } from '../amplify/auth/auth-errors.service'
 import { translations } from '../language'
 import { ErrorType } from './types'
 
-const {
-  errors: { generic },
-} = translations
-
 /**
  * Function used to handle the system errors. This function can be used to show a error toast message
  *
@@ -25,6 +21,10 @@ export const errorHandler = (
   showToastMessage = false,
   errorType = ErrorType.DEFAULT,
 ): void => {
+  const {
+    errors: { generic },
+  } = translations
+
   if (error?.response) console.error(message, JSON.stringify(error?.response, null, 4))
   else if (error?.request) console.error(message, JSON.stringify(error?.request, null, 4))
   else if (isJsonString(error)) console.error(message, JSON.stringify(error, null, 4))

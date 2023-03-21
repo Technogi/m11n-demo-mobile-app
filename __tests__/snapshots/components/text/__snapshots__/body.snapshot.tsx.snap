@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Body renders correctly 1`] = `
+<Text
+  style={
+    {
+      "color": "#616161",
+      "fontFamily": "Roboto-Regular",
+      "fontSize": 22,
+    }
+  }
+>
+  Test Body Component
+</Text>
+`;

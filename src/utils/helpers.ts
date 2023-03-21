@@ -16,7 +16,7 @@ import { deviceWidth } from './constants'
  * @param {Array<any>} array
  * @returns {boolean} boolean
  */
-export const isNotEmptyArray = (array: Array<any>): boolean => Array.isArray(array) && array.length > 0
+export const isNotEmptyArray = <T>(array: Array<T>): boolean => Array.isArray(array) && array.length > 0
 
 /**
  * Function used to validate if a variable is an array and if the array has a length equal to 0
@@ -177,19 +177,6 @@ export const alertMessage = (
  * @return {boolean}  {boolean}
  */
 export const isBoolean = (value: boolean): boolean => typeof value === 'boolean'
-
-/**
- * Function used to format currency strings
- *
- * @export
- * @param price
- * @returns
- */
-export const formatPrice = (price: number): string => {
-  const formattedPrice = `$${price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')} M.N.`
-
-  return formattedPrice
-}
 
 /**
  * Wrap a promise with its respective try / catch avoiding handling these statements in the code.

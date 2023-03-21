@@ -2,6 +2,11 @@
   "cSpell.words": [
     "airbnb",
     "gnored",
-    "tanstack"
-  ]
+    "tanstack",
+  ],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true
 }

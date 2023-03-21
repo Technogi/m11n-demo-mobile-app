@@ -5,10 +5,6 @@ import { translations } from 'src/services/language'
 import { isNotEmptyArray } from 'src/utils/helpers'
 import { CognitoError, AuthErrorName } from './types'
 
-const {
-  errors: { auth, generic },
-} = translations
-
 /**
  * Returns a cognito error message.
  *
@@ -17,6 +13,10 @@ const {
  * @return {string}  {string}
  */
 export const cognitoErrorHandler = (error: string): string => {
+  const {
+    errors: { auth, generic },
+  } = translations
+
   let authErrorMessage = generic
   let cognitoError: CognitoError
 

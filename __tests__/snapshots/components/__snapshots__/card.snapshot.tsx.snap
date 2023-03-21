@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card renders correctly 1`] = `
+<View
+  style={
+    {
+      "backgroundColor": "white",
+      "borderRadius": 15.714285714285714,
+      "minHeight": 60,
+      "padding": 23.57142857142857,
+      "width": "100%",
+    }
+  }
+>
+  <View />
+</View>
+`;

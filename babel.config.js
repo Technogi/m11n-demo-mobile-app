@@ -10,5 +10,7 @@ module.exports = {
       }
     ],
     'react-native-reanimated/plugin',
+    '@babel/plugin-proposal-private-methods',
+    '@babel/plugin-proposal-class-properties'
   ]
 };

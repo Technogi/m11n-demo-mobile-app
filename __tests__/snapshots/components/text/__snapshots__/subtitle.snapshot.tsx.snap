@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Subtitle renders correctly 1`] = `
+<Text
+  style={
+    {
+      "color": "#616161",
+      "fontFamily": "Roboto-Regular",
+      "fontSize": 25.142857142857142,
+    }
+  }
+>
+  Test Subtitle Component
+</Text>
+`;
