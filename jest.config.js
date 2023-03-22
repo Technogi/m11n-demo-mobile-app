@@ -8,7 +8,9 @@ module.exports = {
     "json",
     "node"
   ],
-  transformIgnorePatterns: [],
+  transformIgnorePatterns: [
+    "jest-runner"
+  ],
   setupFiles: [
     "./src/jest/jest-setup.ts"
   ],
