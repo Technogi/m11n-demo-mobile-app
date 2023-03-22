@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CustomTextInput renders correctly 1`] = `
+<View
+  style={
+    {
+      "borderColor": "#bbbbbb",
+      "borderRadius": 10,
+      "borderWidth": 1,
+    }
+  }
+>
+  <TextInput
+    placeholderTextColor="#bbbbbb"
+    selectionColor="#E91E63"
+    style={
+      {
+        "color": "#616161",
+        "fontFamily": "Roboto-Regular",
+        "fontSize": 25.142857142857142,
+        "padding": 17.285714285714285,
+      }
+    }
+    textInputStyle={
+      {
+        "color": "#616161",
+        "fontFamily": "Roboto-Regular",
+        "fontSize": 22,
+      }
+    }
+  />
+</View>
+`;

@@ -10,6 +10,7 @@ import Headline from './text/headline'
 import Subtitle from './text/subtitle'
 import Body from './text/body'
 import Caption from './text/caption'
+import CustomTextInput from './forms/text-input/custom-text-input'
 import TextInputForm from './forms/text-input/text-input.form'
 import HorizontalSeparator from './horizontal-separator'
 import SecondaryButton from './buttons/secondary.button'
@@ -38,6 +39,7 @@ export {
   // RadioButton,
   HorizontalSeparator,
   // CustomIcon,
+  CustomTextInput,
   TextInputForm,
   LogoHeader,
   TitleHeader,

@@ -1,0 +1,145 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextInputForm renders correctly 1`] = `
+<View
+  style={{}}
+>
+  <View
+    style={
+      {
+        "borderColor": "#bbbbbb",
+        "borderRadius": 10,
+        "borderWidth": 1,
+      }
+    }
+  >
+    <TextInput
+      blurOnSubmit={false}
+      containerStyle={
+        {
+          "borderColor": "#bbbbbb",
+        }
+      }
+      control={
+        {
+          "_defaultValues": {
+            "email": "",
+          },
+          "_executeSchema": [Function],
+          "_fields": {
+            "email": {
+              "_f": {
+                "mount": true,
+                "name": "email",
+                "ref": {
+                  "name": "email",
+                },
+                "value": "",
+              },
+            },
+          },
+          "_focusError": [Function],
+          "_formState": {
+            "dirtyFields": {},
+            "errors": {},
+            "isDirty": false,
+            "isLoading": true,
+            "isSubmitSuccessful": false,
+            "isSubmitted": false,
+            "isSubmitting": false,
+            "isValid": false,
+            "isValidating": false,
+            "submitCount": 0,
+            "touchedFields": {},
+          },
+          "_formValues": {
+            "email": "",
+          },
+          "_getDirty": [Function],
+          "_getFieldArray": [Function],
+          "_getWatch": [Function],
+          "_names": {
+            "array": Set {},
+            "mount": Set {
+              "email",
+            },
+            "unMount": Set {},
+            "watch": Set {},
+          },
+          "_options": {
+            "defaultValues": {
+              "email": "",
+            },
+            "mode": "all",
+            "reValidateMode": "onChange",
+            "shouldFocusError": true,
+          },
+          "_proxyFormState": {
+            "dirtyFields": false,
+            "errors": "all",
+            "isDirty": false,
+            "isValid": false,
+            "isValidating": false,
+            "touchedFields": false,
+          },
+          "_removeUnmounted": [Function],
+          "_reset": [Function],
+          "_stateFlags": {
+            "action": false,
+            "mount": false,
+            "watch": false,
+          },
+          "_subjects": {
+            "array": {
+              "next": [Function],
+              "observers": [],
+              "subscribe": [Function],
+              "unsubscribe": [Function],
+            },
+            "state": {
+              "next": [Function],
+              "observers": [],
+              "subscribe": [Function],
+              "unsubscribe": [Function],
+            },
+            "watch": {
+              "next": [Function],
+              "observers": [],
+              "subscribe": [Function],
+              "unsubscribe": [Function],
+            },
+          },
+          "_updateFieldArray": [Function],
+          "_updateFormState": [Function],
+          "_updateValid": [Function],
+          "getFieldState": [Function],
+          "register": [Function],
+          "unregister": [Function],
+        }
+      }
+      onBlur={[Function]}
+      onChangeText={[Function]}
+      placeholder="Enter your email"
+      placeholderTextColor="#bbbbbb"
+      returnKeyType="next"
+      selectionColor="#E91E63"
+      style={
+        {
+          "color": "#616161",
+          "fontFamily": "Roboto-Regular",
+          "fontSize": 25.142857142857142,
+          "padding": 17.285714285714285,
+        }
+      }
+      textInputStyle={
+        {
+          "color": "#616161",
+          "fontFamily": "Roboto-Regular",
+          "fontSize": 22,
+        }
+      }
+      value=""
+    />
+  </View>
+</View>
+`;

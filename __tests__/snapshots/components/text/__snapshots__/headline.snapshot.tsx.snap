@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Headline renders correctly 1`] = `
+<Text
+  style={
+    {
+      "color": "#616161",
+      "fontFamily": "Roboto-Bold",
+      "fontSize": 28.285714285714285,
+    }
+  }
+>
+  Test Headline Component
+</Text>
+`;

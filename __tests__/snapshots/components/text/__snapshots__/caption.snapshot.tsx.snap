@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Caption renders correctly 1`] = `
+<Text
+  style={
+    {
+      "color": "#616161",
+      "fontFamily": "Roboto-Regular",
+      "fontSize": 18.857142857142858,
+    }
+  }
+>
+  Test Caption Component
+</Text>
+`;
