@@ -52,5 +52,77 @@
       "userNotConfirmed": "El usuario no ha sido confirmado",
       "limitExceeded": "Has alcanzado el máximo de intentos. Por favor intentan en 15 minutos."
     }
+  },
+  "salesForecasts": {
+    "title": "Pronóstico de Ventas",
+    "monthly": "Mensual",
+    "selectOption": "Selecciona una opción",
+    "percentile": "Percentil"
+  },
+  "months": [
+    {
+      "id": "JAN",
+      "name": "Enero",
+      "shortName": "ENE"
+    },
+    {
+      "id": "FEB",
+      "name": "Febrero",
+      "shortName": "FEB"
+    },
+    {
+      "id": "MAR",
+      "name": "Marzo",
+      "shortName": "MAR"
+    },
+    {
+      "id": "APR",
+      "name": "Abril",
+      "shortName": "ABR"
+    },
+    {
+      "id": "MAY",
+      "name": "Mayo",
+      "shortName": "MAY"
+    },
+    {
+      "id": "JUN",
+      "name": "Junio",
+      "shortName": "JUN"
+    },
+    {
+      "id": "JUL",
+      "name": "Julio",
+      "shortName": "JUL"
+    },
+    {
+      "id": "AUG",
+      "name": "Agosto",
+      "shortName": "AGO"
+    },
+    {
+      "id": "SEP",
+      "name": "Septiembre",
+      "shortName": "SEP"
+    },
+    {
+      "id": "OCT",
+      "name": "Octubre",
+      "shortName": "OCT"
+    },
+    {
+      "id": "NOV",
+      "name": "Noviembre",
+      "shortName": "NOV"
+    },
+    {
+      "id": "DEC",
+      "name": "Diciembre",
+      "shortName": "DIC"
+    }
+  ],
+  "tabs": {
+    "home": "Home",
+    "sales": "Ventas"
   }
 }

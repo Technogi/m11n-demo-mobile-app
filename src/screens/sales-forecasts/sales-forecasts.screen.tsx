@@ -1,18 +1,20 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useState } from 'react'
 import { ScrollView, ActivityIndicator, View, RefreshControl } from 'react-native'
 import { useQuery } from '@tanstack/react-query'
 import Modal from 'react-native-modal'
 import Feather from 'react-native-vector-icons/Feather'
 import getDaysInMonth from 'date-fns/getDaysInMonth'
-
 import { LineChart } from 'react-native-chart-kit'
 import { moderateScale } from 'react-native-size-matters'
+
 import { Body, Card, Container, Content, PressableOpacity, Subtitle, TitleHeader } from 'src/components'
 import { SalesForecastsNavProps } from 'src/navigation/sales/sales-stack.model'
-import { deviceWidth, MonthsFullName } from 'src/utils/constants'
+import { deviceWidth } from 'src/utils/constants'
 import { formatNumber, isNotEmptyArray, promiseTryCatch } from 'src/utils/helpers'
 import { apiGet } from 'src/services/api'
 import { theme } from 'src/styles'
+import { LocalizationContext } from 'src/context/localization/localization.context'
+
 import styles from './styles'
 
 type SearchParams = {
@@ -42,7 +44,15 @@ type ForecastChartItem = {
 const ByMonth = -1
 
 const fetchFunction =
-  ({ id, searchParams }: { searchParams: SearchParams; id: number }) =>
+  ({
+    id,
+    searchParams,
+    months,
+  }: {
+    searchParams: SearchParams
+    id: number
+    months: Array<{ id: string; name: string }>
+  }) =>
   async () => {
     const params = new URLSearchParams(searchParams)
 
@@ -56,7 +66,7 @@ const fetchFunction =
       const { p10, p50, p90 }: ForecastType = response?.data
 
       const nameFn = (val: string): string =>
-        searchParams?.m === 'monthly' ? MonthsFullName[new Date(val).getMonth()].id : new Date(val).getDate() + ''
+        searchParams?.m === 'monthly' ? months[new Date(val).getMonth()].id : new Date(val).getDate() + ''
 
       p10.forEach(({ Timestamp, Value }) => {
         const item = result.find(({ name }) => name === nameFn(Timestamp))
@@ -95,11 +105,15 @@ const SalesForecastsScreen = ({ route, navigation }: SalesForecastsNavProps): JS
   const [showModal, setModal] = useState(false)
   const [indexSelected, setIndexSelected] = useState(-1)
 
+  const {
+    translations: { salesForecasts, months },
+  } = useContext(LocalizationContext)
+
   const { modalStyle, modalContainer, scrollContainer } = styles
 
   const { data, refetch, isFetching } = useQuery({
     queryKey: ['forecast'],
-    queryFn: fetchFunction({ searchParams, id }),
+    queryFn: fetchFunction({ searchParams, id, months }),
     enabled: false,
   })
 
@@ -187,7 +201,7 @@ const SalesForecastsScreen = ({ route, navigation }: SalesForecastsNavProps): JS
       <View style={modalStyle}>
         <View style={{ flexDirection: 'row', paddingHorizontal: moderateScale(20) }}>
           <View style={{ flex: 0.9, alignItems: 'center' }}>
-            <Subtitle bold>Select an option</Subtitle>
+            <Subtitle bold>{salesForecasts.selectOption}</Subtitle>
           </View>
 
           <PressableOpacity hitSlop={5} containerStyle={{ flex: 0.1 }} onPress={() => setModal(false)}>
@@ -200,10 +214,10 @@ const SalesForecastsScreen = ({ route, navigation }: SalesForecastsNavProps): JS
             containerStyle={{ alignItems: 'center', marginTop: moderateScale(20) }}
             onPress={() => selectOption(-1)}
           >
-            <Body>Monthly</Body>
+            <Body>{salesForecasts.monthly}</Body>
           </PressableOpacity>
 
-          {MonthsFullName?.map((month, index) => {
+          {months?.map((month, index) => {
             if (index >= new Date().getMonth()) {
               return (
                 <PressableOpacity
@@ -229,7 +243,7 @@ const SalesForecastsScreen = ({ route, navigation }: SalesForecastsNavProps): JS
       onPress={() => setModal(true)}
     >
       <View style={{ paddingRight: moderateScale(12) }}>
-        <Subtitle>{indexSelected > -1 ? MonthsFullName[indexSelected]?.name : 'Monthly'}</Subtitle>
+        <Subtitle>{indexSelected > -1 ? months[indexSelected]?.name : salesForecasts.monthly}</Subtitle>
       </View>
 
       <View style={{}}>
@@ -246,15 +260,24 @@ const SalesForecastsScreen = ({ route, navigation }: SalesForecastsNavProps): JS
       }}
     >
       <Content>
-        <TitleHeader title={`${name} Sales Forecasts`} navigation={navigation} />
+        <TitleHeader title={`${name} ${salesForecasts.title}`} navigation={navigation} />
         <MonthSelect />
         {!isFetching && data ? (
           <>
             <ScrollView horizontal contentContainerStyle={{ paddingVertical: moderateScale(15) }}>
               <LineChart
                 data={{
-                  labels: data?.map(item => item.name),
-                  legend: ['10th Percentile', '50th Percentile', '90th Percentile'],
+                  labels: data?.map(item => {
+                    const monthFound = months.find(month => month?.id === item?.name)
+
+                    if (!monthFound) return item?.name
+                    return monthFound.shortName
+                  }),
+                  legend: [
+                    `10th ${salesForecasts.percentile}`,
+                    `50th ${salesForecasts.percentile}`,
+                    `90th ${salesForecasts.percentile}`,
+                  ],
                   datasets: [
                     {
                       data: data?.map(item => item.p10),
@@ -299,7 +322,7 @@ const SalesForecastsScreen = ({ route, navigation }: SalesForecastsNavProps): JS
             </ScrollView>
             {isNumeric(currentPointIndex) && (
               <Card>
-                <Body bold>{MonthsFullName.find(month => month.id === data[currentPointIndex].name)?.name}</Body>
+                <Body bold>{months.find(month => month.id === data[currentPointIndex].name)?.name}</Body>
                 <Body style={{ marginTop: moderateScale(10), color: 'rgb(255, 165, 0)' }}>
                   p10: {formatNumber(Number(Number(Number(data[currentPointIndex].p10) / 1000).toFixed(0)))}K
                 </Body>

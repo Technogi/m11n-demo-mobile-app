@@ -52,5 +52,77 @@
       "userNotConfirmed": "User has not been confirmed",
       "limitExceeded": "You have reached the maximum number of attempts. Please try again in 15 minutes."
     }
+  },
+  "salesForecasts": {
+    "title": "Sales Forecasts",
+    "monthly": "Monthly",
+    "selectOption": "Select an option",
+    "percentile": "Percentile"
+  },
+  "months": [
+    {
+      "id": "JAN",
+      "name": "January",
+      "shortName": "JAN"
+    },
+    {
+      "id": "FEB",
+      "name": "February",
+      "shortName": "FEB"
+    },
+    {
+      "id": "MAR",
+      "name": "March",
+      "shortName": "MAR"
+    },
+    {
+      "id": "APR",
+      "name": "April",
+      "shortName": "APR"
+    },
+    {
+      "id": "MAY",
+      "name": "May",
+      "shortName": "MAY"
+    },
+    {
+      "id": "JUN",
+      "name": "June",
+      "shortName": "JUN"
+    },
+    {
+      "id": "JUL",
+      "name": "July",
+      "shortName": "JUL"
+    },
+    {
+      "id": "AUG",
+      "name": "August",
+      "shortName": "AUG"
+    },
+    {
+      "id": "SEP",
+      "name": "September",
+      "shortName": "SEP"
+    },
+    {
+      "id": "OCT",
+      "name": "October",
+      "shortName": "OCT"
+    },
+    {
+      "id": "NOV",
+      "name": "November",
+      "shortName": "NOV"
+    },
+    {
+      "id": "DEC",
+      "name": "December",
+      "shortName": "DEC"
+    }
+  ],
+  "tabs": {
+    "home": "Home",
+    "sales": "Sales"
   }
 }
