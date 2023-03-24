@@ -94,6 +94,8 @@ const fetchFunction =
 
 const isNumeric = (value): boolean => /^-?\d+$/.test(value)
 
+const shortenNumber = (value: number | string): number => Number(Number(Number(value) / 1000).toFixed(0))
+
 const SalesForecastsScreen = ({ route, navigation }: SalesForecastsNavProps): JSX.Element => {
   const { id, name } = route?.params
 
@@ -303,7 +305,7 @@ const SalesForecastsScreen = ({ route, navigation }: SalesForecastsNavProps): JS
                 yAxisInterval={1} // optional, defaults to 1
                 withShadow={false}
                 fromZero
-                formatYLabel={yLabel => formatNumber(Number(Number(Number(yLabel) / 1000).toFixed(0)))}
+                formatYLabel={yLabel => formatNumber(shortenNumber(yLabel))}
                 chartConfig={{
                   backgroundColor: 'white',
                   backgroundGradientFrom: 'white',
@@ -324,13 +326,13 @@ const SalesForecastsScreen = ({ route, navigation }: SalesForecastsNavProps): JS
               <Card>
                 <Body bold>{months.find(month => month.id === data[currentPointIndex].name)?.name}</Body>
                 <Body style={{ marginTop: moderateScale(10), color: 'rgb(255, 165, 0)' }}>
-                  p10: {formatNumber(Number(Number(Number(data[currentPointIndex].p10) / 1000).toFixed(0)))}K
+                  p10: {formatNumber(shortenNumber(data[currentPointIndex].p10))}K
                 </Body>
                 <Body style={{ color: 'rgb(136, 136, 136)' }}>
-                  p50: {formatNumber(Number(Number(Number(data[currentPointIndex].p50) / 1000).toFixed(0)))}K
+                  p50: {formatNumber(shortenNumber(data[currentPointIndex].p50))}K
                 </Body>
                 <Body style={{ color: 'rgb(0, 128, 0)' }}>
-                  p90: {formatNumber(Number(Number(Number(data[currentPointIndex].p90) / 1000).toFixed(0)))}K
+                  p90: {formatNumber(shortenNumber(data[currentPointIndex].p90))}K
                 </Body>
               </Card>
             )}
